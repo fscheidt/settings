@@ -3,8 +3,8 @@ autoinstall:
   minimal: true
   identity:
     hostname: vbox
-    username: scheidt
-    password: "$6$rounds=4096$abcdefgh$yLkknz7nOn8oG0yfnHZQ4b1w8eCnH8lmHjLJgJZ2MkJZvU3ld1R7h7hWTXTFGB.KDFTcfG2Bmy.fGAdHV9Ctv/"
+    username: scheidt    
+    password: "$6$CRaC016ybppU9MyK$/e/Y5z3CBHOwd9fEJskbrf/lbV1ZrDrb5b.oHWr10HT7d3SeafNfMq6dCvBa5NNv5/YJ.sDV9lDjze9kvGB0b0"
   locale: en_US.UTF-8
   keyboard:
     layout: us
@@ -19,11 +19,13 @@ autoinstall:
     layout:
       name: lvm
   packages:
-    - ubuntu-desktop
+    - ubuntu-desktop-minimal
+    - curl
     - git
     - wget
     - tree
     - vim
+    - dconf-cli
   snaps:
     - name: sublime-text
       classic: true
