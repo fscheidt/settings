@@ -1,0 +1,43 @@
+autoinstall:
+  version: 1
+  minimal: true
+  identity:
+    hostname: vbox
+    username: scheidt
+    password: "$6$rounds=4096$abcdefgh$yLkknz7nOn8oG0yfnHZQ4b1w8eCnH8lmHjLJgJZ2MkJZvU3ld1R7h7hWTXTFGB.KDFTcfG2Bmy.fGAdHV9Ctv/"
+  locale: en_US.UTF-8
+  keyboard:
+    layout: us
+    variant: ""
+  network:
+    network:
+      version: 2
+      ethernets:
+        ens33:
+          dhcp4: true
+  storage:
+    layout:
+      name: lvm
+  packages:
+    - ubuntu-desktop
+    - git
+    - wget
+    - tree
+    - vim
+    - dconf-cli
+  snaps:
+    - name: sublime-text
+      classic: true
+  user-data:
+    disable_root: false
+  runcmd:
+    - [eval, 'echo $(cat /proc/cmdline) "autoinstall" > /root/cmdline']
+    - [eval, 'mount -n --bind -o ro /root/cmdline /proc/cmdline']
+    - [eval, 'snap restart subiquity.subiquity-server']
+    - [eval, 'snap restart subiquity.subiquity-service']
+  late-commands:
+    - curtin in-target --target=/target -- apt-get update
+    - curtin in-target --target=/target -- apt-get upgrade -y --download-only
+    - curtin in-target --target=/target -- wget -O /tmp/gnome-text-editor-dark.dconf https://raw.githubusercontent.com/fscheidt/settings/refs/heads/master/dconf/gnome-text-editor-dark.dconf
+    - curtin in-target --target=/target -- dconf load /org/gnome/terminal/ < /tmp/gnome-text-editor-dark.dconf
+    
