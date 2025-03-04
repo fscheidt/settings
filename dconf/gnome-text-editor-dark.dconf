@@ -1,0 +1,17 @@
+[/]
+custom-font='Meslo LG L 16'
+discover-settings=false
+highlight-current-line=true
+indent-style='space'
+last-save-directory='file:///home/scheidt/Desktop'
+restore-session=false
+right-margin-position=uint32 80
+show-grid=true
+show-line-numbers=true
+show-map=true
+show-right-margin=false
+spellcheck=false
+style-scheme='classic-dark'
+style-variant='dark'
+tab-width=uint32 4
+use-system-font=false
