@@ -1,35 +1,20 @@
-#cloud-config
 autoinstall:
   version: 1
   identity:
-    realname: 'Ubuntu User'
+    realname: 'scheidt'
     hostname: vbox
     username: scheidt
     password: "$6$CRaC016ybppU9MyK$/e/Y5z3CBHOwd9fEJskbrf/lbV1ZrDrb5b.oHWr10HT7d3SeafNfMq6dCvBa5NNv5/YJ.sDV9lDjze9kvGB0b0"
   locale: en_US.UTF-8
   keyboard:
-    layout: "us"
+    layout: us
     variant: ""
   timezone: "America/Sao_Paulo"
   source:
     id: ubuntu-desktop-minimal
-  apt:
-    mirror-selection:
-      primary:
-        - uri: "http://ubuntu.c3sl.ufpr.br/ubuntu"
-        - uri: "http://archive.ubuntu.com/ubuntu"
-      fallback: offline-install
-  network:
-    network:
-      version: 2
-      ethernets:
-        ens33:
-          dhcp4: true
   storage:
     layout:
       name: lvm
-    swap:
-      size: 0
   packages:
     - git
     - wget
@@ -52,24 +37,12 @@ autoinstall:
         owner: scheidt:scheidt
         permissions: "0755"
         content: |
-          #!/usr/bin/env bash
+          #!/bin/bash
           set -e
-          LOGFILE="/home/scheidt/postinstall.log"
-          exec > >(tee -a "$LOGFILE") 2>&1
-          echo "Running post-install configuration for user: $(whoami)"
-          HOME=/home/scheidt
-          export HOME
-          if [ ! -d "$HOME/vm" ]; then
-              git clone --depth=1 https://github.com/fscheidt/vm "$HOME/vm"
-          else
-              echo "Repository already exists, pulling latest changes"
-              cd "$HOME/vm" && git pull --ff-only
-          fi
+          git clone --depth=1 https://github.com/fscheidt/vm /home/scheidt/vm
     runcmd:
       - sudo -u scheidt bash /home/scheidt/postinstall.sh
   late-commands:
     - curtin in-target --target=/target -- apt-get update
     - curtin in-target --target=/target -- apt-get upgrade -y --download-only
     - curtin in-target --target=/target -- flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
-    - curtin in-target --target=/target -- flatpak install -y flathub com.calibre_ebook.calibre
-    - curtin in-target --target=/target -- flatpak install -y flathub com.github.jeromerobert.pdfarranger
