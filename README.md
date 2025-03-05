@@ -18,5 +18,5 @@ https://raw.githubusercontent.com/fscheidt/settings/refs/heads/master/autoinstal
 
 autoinstall4
 ```console
-
+https://raw.githubusercontent.com/fscheidt/settings/refs/heads/master/ubuntu/autoinstall4.yaml
 ```

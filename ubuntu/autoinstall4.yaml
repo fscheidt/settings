@@ -13,7 +13,7 @@ autoinstall:
     options: "grp:win_space_toggle,grp_led:scroll,terminate:ctrl_alt_bksp"
   timezone: "America/Sao_Paulo"
   source:
-    id: ubuntu-desktop-minimal  # default == ubuntu-desktop
+    id: ubuntu-desktop-minimal
   apt:
     mirror-selection:
       primary:

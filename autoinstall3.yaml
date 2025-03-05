@@ -39,8 +39,6 @@ autoinstall:
   late-commands:
     - curtin in-target --target=/target -- apt-get update
     - curtin in-target --target=/target -- apt-get upgrade -y --download-only
-    - curtin in-target --target=/target -- wget -O /tmp/gnome-text-editor-dark.dconf https://raw.githubusercontent.com/fscheidt/settings/refs/heads/master/dconf/gnome-text-editor-dark.dconf
-    - curtin in-target --target=/target -- dconf load /org/gnome/terminal/ < /tmp/gnome-text-editor-dark.dconf
     - curtin in-target --target=/target -- apt-get remove -y libreoffice*
     - curtin in-target --target=/target -- apt-get autoremove -y
     - curtin in-target --target=/target -- apt-get clean
