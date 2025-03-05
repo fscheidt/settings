@@ -8,9 +8,8 @@ autoinstall:
     password: "$6$CRaC016ybppU9MyK$/e/Y5z3CBHOwd9fEJskbrf/lbV1ZrDrb5b.oHWr10HT7d3SeafNfMq6dCvBa5NNv5/YJ.sDV9lDjze9kvGB0b0"
   locale: en_US.UTF-8
   keyboard:
-    layout: "us,br"
-    variant: ","
-    options: "grp:win_space_toggle,grp_led:scroll,terminate:ctrl_alt_bksp"
+    layout: "us"
+    variant: ""
   timezone: "America/Sao_Paulo"
   source:
     id: ubuntu-desktop-minimal
